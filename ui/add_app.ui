@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_add_app</class>
+ <widget class="QWidget" name="Form_add_app">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>745</width>
+    <height>576</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,10">
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="8,2">
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="9" column="4">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="BodyLabel" name="label_3">
+         <property name="text">
+          <string>强更本地路径</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2" colspan="3">
+        <widget class="ComboBox" name="comboBox_update_toast">
+         <item>
+          <property name="text">
+           <string>false</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>true</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="BodyLabel" name="label_2">
+         <property name="text">
+          <string>热更本地路径</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="BodyLabel" name="label_9">
+         <property name="text">
+          <string>强制更新</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="3">
+        <widget class="LineEdit" name="lineEdit_OSS_path"/>
+       </item>
+       <item row="8" column="3">
+        <widget class="PushButton" name="btn_creat_app">
+         <property name="text">
+          <string>新建软件</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="BodyLabel" name="label">
+         <property name="text">
+          <string>软件名称</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="3">
+        <widget class="LineEdit" name="lineEdit_hot_update_path"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="BodyLabel" name="label_4">
+         <property name="text">
+          <string>对象存储路径</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="3">
+        <widget class="LineEdit" name="lineEdit_Version">
+         <property name="text">
+          <string>1.0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="BodyLabel" name="label_6">
+         <property name="text">
+          <string>更新弹窗</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2" colspan="3">
+        <widget class="ComboBox" name="comboBox_update_force">
+         <item>
+          <property name="text">
+           <string>true</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>false</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="2" colspan="3">
+        <widget class="TextEdit" name="textEdit_update_content"/>
+       </item>
+       <item row="7" column="0">
+        <widget class="BodyLabel" name="label_7">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>更新说明</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="BodyLabel" name="label_5">
+         <property name="text">
+          <string>现行版本</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="3">
+        <widget class="LineEdit" name="lineEdit_force_update_path"/>
+       </item>
+       <item row="0" column="2" colspan="3">
+        <widget class="LineEdit" name="lineEdit_app_name"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>TextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

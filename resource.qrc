@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file>image/ico.png</file>
+        <file>image/favicon.ico</file>
+        <file>image/QQ.png</file>
+        <file>image/wx.png</file>
+    </qresource>
+</RCC>
