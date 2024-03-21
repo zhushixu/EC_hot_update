@@ -1,4 +1,15 @@
 本软件用于Easyclick热更时使用，运用了阿里云对象存储和腾讯云对象存储，可自行配置好KeyAPI后进行使用
+如果你想二次开发，请按以下方法：
+  1.在pycharm中导入本源码
+  因为本UI使用的是QFluentWidgets，所以需要先安装
+  2.pip install PyQt-Fluent-Widgets -i https://pypi.org/simple/
+  3.如果你的运气够好，现在应该可以直接运行了！
+  4.打包方式：使用pyinstaller和auto-py-to-exe
+    a.在终端输入：pip install pyinstaller
+    b.在终端输入：pip install auto-py-to-exe  
+    c.在终端输入：auto-py-to-exe
+    d.在弹出的web中，选择语言chinese，在“设置”中选择“从JSON文件导入配置”，选择下载的dabao.json，此时点击“将.PY转换为.EXE”
+    等待打包完成，在output目录中就可以找到打包好的可执行应用程序了！
 使用视频教程：https://www.bilibili.com/video/BV1KT4y1n7n1/
 ![image](https://github.com/zhushixu/EC_hot_update/assets/103643485/e5c12d62-1e3f-47c8-9afb-93230187086c)
 
