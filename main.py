@@ -11,7 +11,9 @@ from qfluentwidgets import SplitFluentWindow, FluentIcon, NavigationItemPosition
 from mainform import MainWindow
 from settingform import SettingWindow
 from addappform import AddappWindow
+from agentform import AgentWindow
 from resource_rc import *
+
 
 class AboutMessageBox(MessageBoxBase):
     def __init__(self, parent=None):
@@ -53,30 +55,31 @@ class AboutMessageBox(MessageBoxBase):
 class MainForm(SplitFluentWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("EC热更工具")
-        self.resize(830, 700)
+        self.setWindowTitle("EC综合工具")
+        self.resize(830, 750)
         self.center()
         # 添加子界面
         self.main_form = MainWindow(self)
         self.setting_form = SettingWindow(self)
         self.addapp_form = AddappWindow(self)
+        self.agent_form = AgentWindow(self)
 
         self.addSubInterface(self.main_form, FluentIcon.HOME, "软件更新")
         self.addSubInterface(self.addapp_form, FluentIcon.ADD, "创建软件")
         self.addSubInterface(self.setting_form, FluentIcon.SETTING, "软件设置")
+        self.addSubInterface(self.agent_form, FluentIcon.LEAF, "代理激活")
         self.navigationInterface.addWidget(
             routeKey='avatar',
             widget=NavigationAvatarWidget('kad', ':image/ico.png'),
             position=NavigationItemPosition.BOTTOM,
             onClick=self.showMessageBox
         )
-        self.version = '1.0.0'
+        self.version = '1.0.2'
 
     def showMessageBox(self):
         try:
             w = AboutMessageBox(self)
             if w.exec():
-                # QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
                 response = requests.get(
                     url='https://update-1305175740.cos.ap-nanjing.myqcloud.com/EC_hot_update/update_app.json')
                 if response.status_code == 200:
@@ -120,7 +123,6 @@ if __name__ == '__main__':
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-
     app = QApplication(sys.argv)
     # setTheme(Theme.DARK)
     w = MainForm()

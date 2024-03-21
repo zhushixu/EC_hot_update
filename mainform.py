@@ -379,6 +379,7 @@ class MainWindow(QWidget, Ui_Form_main):
         w.show()
 
 
+
 class updatewindow(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)

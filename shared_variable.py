@@ -3,6 +3,8 @@ import json
 import os
 import re
 import sqlite3
+import time
+
 from PyQt5 import QtWidgets
 from qcloud_cos import CosConfig, CosS3Client
 from qcloud_cos.cos_threadpool import SimpleThreadPool
@@ -76,6 +78,7 @@ class Global:
     def upload_file(self, bucket_name, local_file_path, path_name):
         if self.client is None:
             self.client = self.get_client()
+        print(self.cloud_name)
         if self.cloud_name == '腾讯云OSS':
             try:
                 response = self.client.upload_file(
@@ -98,11 +101,14 @@ class Global:
         elif self.cloud_name == '阿里云OSS':
             try:
                 print("开始上传文件")
-                self.client.put_object(key=path_name, data=local_file_path)
-                print("dkdsaf")
-                return True
+                with open(local_file_path,'rb') as file:
+                    result = self.client.put_object(key=path_name,data=file)
+                if len(result.etag) >= 32:
+                    return True
+                else:
+                    return False
             except Exception as e:
-                print(f"上传文件错误{e}")
+                print(f"上传文件错误::{e}")
                 return False
 
     def put_object(self, bucket, content, file_name):
@@ -124,7 +130,8 @@ class Global:
                 print("put_objet错误：", e)
         elif self.cloud_name == '阿里云OSS':
             try:
-                self.client.put_object(key=file_name, data=content)
+                result = self.client.put_object(key=file_name, data=content)
+                print(result.status,result.etag)
                 return True
             except Exception as e:
                 print(e)
