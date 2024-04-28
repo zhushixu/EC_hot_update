@@ -28,6 +28,10 @@
 
 ![image](https://github.com/zhushixu/EC_hot_update/assets/103643485/6e697069-5785-418a-bd68-c6ab937d5143)
 
+如果你遇到了问题，请加入我的星球来提问：
+![cb387dbe49d592d1fbfe69b77498eab](https://github.com/zhushixu/EC_hot_update/assets/103643485/a903c3f4-67c6-4282-9606-42401f20b274)
+
+
 开发不易，若您觉得好用，请作者喝杯奶茶吧
 
 ![2b2ed6393446c8f1673b01c62751f38](https://github.com/zhushixu/EC_hot_update/assets/103643485/46551907-0daa-4c4f-88d4-0fa19ae3103b)
