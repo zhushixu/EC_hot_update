@@ -104,7 +104,13 @@ class AgentWindow(QWidget, Ui_Form_agent):
 
     def extract_file(self):
         # 获取 adb.exe 在打包后的可执行文件中的路径
-        file_path = os.path.join(sys._MEIPASS, 'agent')
+        # file_path = os.path.join(sys._MEIPASS, 'agent')
+        # shutil.copytree(file_path, r'.\agent', dirs_exist_ok=True)
+        if hasattr(sys, '_MEIPASS'):
+            file_path = os.path.join(sys._MEIPASS, 'agent')
+        else:
+            file_path = os.path.join(os.path.dirname(__file__), 'agent')  # 使用当前目录
+
         shutil.copytree(file_path, r'.\agent', dirs_exist_ok=True)
 
     def insert_data_to_table(self, data):

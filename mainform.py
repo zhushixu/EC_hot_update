@@ -1,14 +1,16 @@
 import json
-
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QDialog, QHBoxLayout, QStyledItemDelegate, QTableWidget
-from ui.ui_main import Ui_Form_main
-from shared_variable import Global
-from PyQt5.QtCore import Qt, QUrl
-from qfluentwidgets import InfoBar, InfoBarIcon, InfoBarPosition, RoundMenu, Action, MenuAnimationType, Dialog
-from qfluentwidgets import FluentIcon as FIF
-from shared_variable import CustomMessageBox, NoticeMessageBox, ChangeMessageBox
-from ui.ui_update import Ui_Dialog_update
 import os
+from datetime import datetime
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QDialog, QTableWidget
+from qfluentwidgets import FluentIcon as FIF
+from qfluentwidgets import InfoBar, InfoBarIcon, InfoBarPosition, RoundMenu, Action, MenuAnimationType, Dialog
+
+from shared_variable import CustomMessageBox, NoticeMessageBox, ChangeMessageBox
+from shared_variable import Global
+from ui.ui_main import Ui_Form_main
+from ui.ui_update import Ui_Dialog_update
 
 
 class MainWindow(QWidget, Ui_Form_main):
@@ -62,6 +64,9 @@ class MainWindow(QWidget, Ui_Form_main):
         copy_hot_update_url = Action(FIF.CALORIES, '热更地址')
         submenu.addAction(copy_hot_update_url)
 
+        copy_hot_updateLog_url = Action(FIF.CALORIES, '更新日志')
+        submenu.addAction(copy_hot_updateLog_url)
+
         copy_force_update_url = Action(FIF.SCROLL, '强更地址')
         submenu.addAction(copy_force_update_url)
 
@@ -77,6 +82,7 @@ class MainWindow(QWidget, Ui_Form_main):
         notice.triggered.connect(self.update_notice)
         delete_app.triggered.connect(self.delete_software)
         copy_hot_update_url.triggered.connect(self.copy_hot_update_url)
+        copy_hot_updateLog_url.triggered.connect(self.copy_hot_updateLog_url)
         copy_force_update_url.triggered.connect(self.copy_force_update_url)
         copy_notice_url.triggered.connect(self.copy_notice_url)
         update_info.triggered.connect(self.change_info)
@@ -112,6 +118,10 @@ class MainWindow(QWidget, Ui_Form_main):
         self.g.copy_text(f'{url}/update.json')
         self.createInfo_success_bar('复制成功')
 
+    def copy_hot_updateLog_url(self):
+        url = self.g.get_host() + f'{self.g.info_url_path}'
+        self.g.copy_text(f'{url}/updateLog.txt')
+        self.createInfo_success_bar('复制成功')
     def copy_force_update_url(self):
         url = self.g.get_host() + f'{self.g.info_url_path}'
         self.g.copy_text(f'{url}/update_app.json')
@@ -151,6 +161,16 @@ class MainWindow(QWidget, Ui_Form_main):
         if os.path.isfile('update_tmp.json'):
             # 将下载的文件删除
             os.remove('update_tmp.json')
+
+        # 设置更新日志，这个日志是所有的更新日志
+        # 保存更新日志到本地文件
+        self.g.could_get_file(self.g.info_url_path + '/updateLog.txt', "updateLog_tmp.txt")
+        oldContent = ""
+        if os.path.isfile('updateLog_tmp.txt'):
+            with open('updateLog_tmp.txt', 'r', encoding='utf-8') as file:
+                oldContent = file.read()  # 将原有的日志放到变量中
+            os.remove('updateLog_tmp.txt')
+
         w = CustomMessageBox(data, self)
         if w.exec():
             # 先判断文件是否存在
@@ -173,6 +193,14 @@ class MainWindow(QWidget, Ui_Form_main):
             # 上传更新说明文档
             upload_notes_result = self.g.put_object(self.g.bucket_name, json.dumps(dict_, ensure_ascii=False),
                                                     f'{self.g.info_url_path}/update.json')
+
+            # 上传更新日志
+            now = datetime.now()
+            formatted_time = now.strftime("%Y-%m-%d %H:%M:%S")
+            newUpdateLog = formatted_time + f"     [{version}]\r\n" + w.textedit_update_info.toPlainText() + "\r\n" + oldContent
+            upload_notes_result = self.g.put_object(self.g.bucket_name, newUpdateLog,
+                                                    f'{self.g.info_url_path}/updateLog.txt')
+
             # 上传文件
             upload_file_result = self.g.upload_file(self.g.bucket_name, self.g.info_hot_path, url_file_name)
             # print(upload_file_result,upload_notes_result)
@@ -310,6 +338,7 @@ class MainWindow(QWidget, Ui_Form_main):
         # elif btn_name == "btn_creat":
         #     creat_form = QDialog(self)
         #     creat_form.exec_()
+
     def search_software(self):
         self.refresh_app()
 
@@ -377,7 +406,6 @@ class MainWindow(QWidget, Ui_Form_main):
         w = InfoBar(InfoBarIcon.SUCCESS, title='成功', content=content, orient=Qt.Vertical, isClosable=True,
                     position=InfoBarPosition.TOP_RIGHT, duration=2000, parent=self)
         w.show()
-
 
 
 class updatewindow(QDialog):

@@ -61,6 +61,8 @@ class AddappWindow(QWidget, Ui_Form_add_app):
 
                     print(f"上传热更说明完成：{response}")
 
+                    # 上传更新日志
+                    self.g.put_object(self.g.bucket_name, '',f'{oss_path}/updateLog.txt')
                     if md5 != '':
                         print("开始上传热更文件")
                         self.g.upload_file(self.g.bucket_name, hot_update_path, f'{oss_path}/release.iec')

@@ -74,7 +74,7 @@ class MainForm(SplitFluentWindow):
             position=NavigationItemPosition.BOTTOM,
             onClick=self.showMessageBox
         )
-        self.version = '1.0.2'
+        self.version = '1.0.3'
 
     def showMessageBox(self):
         try:
